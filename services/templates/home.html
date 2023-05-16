@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="menu">
+    <h1>Kahoot Clone, the 100% engagement platform.</h1>
+    <p>Find and create free gamified quizzes and interactive lessons to engage any learner. Our game-based learning
+        platform produces user-generated multiple-choice quizzes that can be accessed via a web browser. You may use
+        this
+        platform to review students' knowledge, for formative assessment, or as a break from traditional classroom
+        activities.</p>
+    <!--   <a href="#"> Search</a> -->
+    {% if user.is_authenticated %}
+    Hi <strong>{{ user.username }}</strong>!
+    <p>
+        <a href="{% url 'questionnaire-create' %}" role="button" class="press">Add New Questionnaire</a>
+        <a href="{% url 'questionnaire-list' %}" role="button" class="press">List All Your Questionnaires</a>
+    </p>
+    <h3 style="margin-bottom:0px;">Your last questionnaires</h3>
+    <div class="position">
+    {% if latest_questionnaire_list %}
+    <ul style="padding:0px">
+        {% for quest in latest_questionnaire_list %}
+        <li>
+            <a href="{% url 'questionnaire-detail' quest.id %}" class="nav-links">{{ quest.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <li style="margin-top: 10px;">No quizzes detected</li>
+    {% endif %}
+    {% else %}
+    <p><strong>You are not logged in</strong></p>
+    <a href="{% url 'login' %}" role="button" class="press">Already have an account, sign in</a>
+    <a href="#" role="button" class="press">Learn More</a>
+    <!-- <a href="#">Sign Up</a> -->
+    {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+Game Score
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+<html style="background-color: rgb(59,138,111);">
+<div style="background-color:darkseagreen; margin-block-end: 10px; text-align: center;">
+<h1 style="padding-bottom: 20px; padding-top: 10px;">Correct Answer: "{{correct}}"</h1>
+<!-- We do not have guesses for the moment so the percentage is not being calculated -->
+<h2 style="padding-bottom: 10px;">Percentage of correct answers {{correct_percentage}}%</h2>
+</div>
+<div style="text-align: center;">
+<br>
+<a href="{% url 'game-count-down' %}" class="press" role="button">Next Question</a>
+<br>
+<h1 style="text-align: center;">Participant's Score</h1>
+<ul>
+{% for participant in participants %}
+<li style="list-style: none; justify-content: center;">{{participant.alias}}({{participant.points}})</li>
+{% endfor %}
+</ul>
+</div>
+</html>
+{% endblock content %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+Game Create
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+<html style="background-color: rgb(59, 138, 111);">
+<div style="background-color: darkseagreen;text-align: center;position: relative; padding: 10px; margin: 10px;">
+
+    <h1>Connect to: {{url}}</h1>
+    <h5>with PIN</h5>
+    <h1>{{game.publicId}}</h1>
+</div>
+<div style="text-align: center; align-content: center;">
+    <br>
+    <a href="{% url 'game-count-down' %}" class="press" role="button">Get Started</a>
+    <div>
+        <h1>List of participants</h1>
+        <h4>As soon as you log in, your alias will be displayed here.</h4>
+    </div>
+</div>
+<div style="display: flex; justify-content: center; align-items: center;">
+    <table class="nav-links">
+        <tr style="width: 100%;">
+            <td id="participant-list"></td>  <!-- Utiliza un elemento HTML con un ID para mostrar los nombres de los usuarios -->
+        </tr>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // Actualizar los nombres de los usuarios cada 2 segundos
+    setInterval(function() {
+        $.ajax({
+            url: "{% url 'game-updateparticipant'%}",  // URL de la vista de actualizacion de usuarios
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Actualizar los nombres de los usuarios en la pagina
+                var participantList = $('#participant-list');
+                participantList.empty(); // Limpia la lista de usuarios antes de agregar los nuevos nombres
+                $.each(data.participants, function(index, participant) {
+                    var listItem = $('<strong>').text(participant);
+                    participantList.append(listItem);
+                    participantList.append('&nbsp;&nbsp;&nbsp;');
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('Error:', errorThrown);
+            }
+        });
+    }, 2000);  // 2000 milisegundos = 2 segundos
+</script>
+</html>
+{% endblock content %}
+
+{% block footer %}
+{% endblock %}

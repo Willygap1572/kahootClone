@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block title %}
+Game Question
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+<html style="background-color: rgb(59,138,111);">
+<div style="background-color:darkseagreen; margin-block-end: 10px; text-align: center; position: relative;">
+
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            .countdown {
+                font-size: 25px;
+                font-weight: bold;
+                text-align: center;
+                position: relative;
+                color: rgb(59, 138, 111);
+            }
+        </style>
+        <script>
+            function countdown() {
+                var seconds = "{{countdown}}";
+                var timer = setInterval(function () {
+                    seconds--;
+                    document.getElementById("countdown").innerHTML = seconds;
+                    if (seconds == 0) {
+                        clearInterval(timer);
+                        window.location.href = "{% url 'game-count-down' %}";
+                    }
+                }, 1000);
+            }
+        </script>
+
+
+    <body onload="countdown()">
+        <h2 style="padding-bottom: 20px; padding-top: 10px;">{{question.question}}</h2>
+        <h3>Remaining time to answer:</h3>
+        <div class="countdown" id="countdown"></div>
+    </body>
+</div>
+<style>
+    .answer-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .answer-1 button {
+        background-color: rgb(227, 128, 128);
+        border-color: rgb(151, 77, 77);
+    }
+
+    .answer-2 button {
+        background-color: rgb(164, 255, 164);
+        border-color: rgb(116, 183, 116);
+    }
+
+    .answer-3 button {
+        background-color: rgb(95, 95, 209);
+        border-color: rgb(67, 67, 145);
+    }
+
+    .answer-4 button {
+        background-color: rgb(234, 234, 130);
+        border-color: rgb(175, 175, 97);
+    }
+
+    .answer-1, .answer-2, .answer-3, .answer-4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="answer-container">
+    {% for answer in answers %}
+        <div class="answer-{{ forloop.counter }}" style="text-align: center;">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="answer" value="{{ answer.id }}">
+                <input type="hidden" name="question" value="{{ question.id }}">
+                <input type="hidden" name="game" value="{{ game.id }}">
+                <button style="height: 25vh; width: 40vw; font-size: 2.5em; border-radius: 10px; border-width: 0.2em;">{{ answer.answer }}</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+
+
+<script>
+    var buttons = document.getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function () {
+            //disable all other buttons
+            for (var j = 0; j < buttons.length; j++) {
+                if (j != i) {
+                    buttons[j].disabled = true;
+                }
+            }
+        }
+    }
+</script>
+
+</html>
+{% endblock content %}
+
+{% block footer %}
+{% endblock %}

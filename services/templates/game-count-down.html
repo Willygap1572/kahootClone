@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+Game Count Down
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+<html style="background-color: rgb(59,138,111);">
+<div style="background-color:darkseagreen;">
+
+    <head>
+        <meta charset="UTF-8">
+        <h1 style="text-align: center;">Game will start in:</h1>
+        <style>
+            .countdown {
+                font-size: 48px;
+                font-weight: bold;
+                text-align: center;
+                position: relative;
+                color: rgb(59, 138, 111);
+            }
+        </style>
+        <script>
+            function countdown() {
+                var seconds = "{{countdown}}";
+                var timer = setInterval(function () {
+                    seconds--;
+                    document.getElementById("countdown").innerHTML = seconds;
+                    if (seconds == 0) {
+                        clearInterval(timer);
+                        window.location.href = "{% url 'game-count-down' %}";
+                    }
+                }, 1000);
+            }
+        </script>
+    </head>
+
+    <body onload="countdown()">
+        <div class="countdown" id="countdown"></div>
+    </body>
+    <br>
+    <h1 style="text-align: center;">seconds</h1>
+</div>
+</html>
+{% endblock content %}
+
+{% block footer %}
+{% endblock %}

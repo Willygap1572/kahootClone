@@ -1,0 +1,41 @@
+Name                                         Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------
+models/__init__.py                               0      0   100%
+models/admin.py                                 16      0   100%
+models/apps.py                                   4      0   100%
+models/constants.py                              4      0   100%
+models/forms.py                                  6      0   100%
+models/management/__init__.py                    0      0   100%
+models/management/commands/__init__.py           0      0   100%
+models/management/commands/createsu.py           8      8     0%   3-16
+models/management/commands/populate.py          84     84     0%   12-158
+models/migrations/0001_initial.py               11      0   100%
+models/migrations/0002_alter_game_state.py       4      0   100%
+models/migrations/0003_alter_game_state.py       4      0   100%
+models/migrations/__init__.py                    0      0   100%
+models/models.py                                65      0   100%
+models/views.py                                 19      0   100%
+--------------------------------------------------------------------------
+TOTAL                                          225     92    59%
+
+Name                              Stmts   Miss  Cover   Missing
+---------------------------------------------------------------
+services/__init__.py                  0      0   100%
+services/admin.py                     0      0   100%
+services/apps.py                      4      0   100%
+services/migrations/__init__.py       0      0   100%
+services/models.py                    0      0   100%
+services/urls.py                      3      0   100%
+services/views.py                   307     17    94%   161, 195, 241, 279-280, 361-364, 400, 404-414
+---------------------------------------------------------------
+TOTAL                               314     17    95%
+
+Name                                Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------
+restServer/__init__.py                  0      0   100%
+restServer/apps.py                      4      0   100%
+restServer/migrations/__init__.py       0      0   100%
+restServer/serializers.py              14      0   100%
+restServer/views.py                    65      0   100%
+-----------------------------------------------------------------
+TOTAL                                  83      0   100%

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+Questionnaire Details
+{% endblock %}
+
+{% block content %}
+    <h1>Questionnaire Details</h1>
+    <h2>{{ questionnaire.title }}:
+    <!-- create two buttons, one for modifiyng the title and the other to start a game with that questionnaire -->
+    <a href="{% url 'questionnaire-update' questionnaire.id%}" role="button" class="press">Edit Title</a>
+    <a href="{% url 'game-create' questionnaire.id %}" role="button" class="press">Play Game</a>
+    </h2>
+    <!-- list all the questions and number of answers in a table, with a button to remove in each answer-->
+    <table class="tabla">
+        <tr>
+            <th>Question</th>
+            <th>Answers</th>
+            <th>Remove</th>
+        </tr>
+        {% for question in questionnaire.question_set.all %}
+        <tr>
+            <td>
+                <a href="{% url 'question-detail' question.id %}" class="nav-links">{{ question.question }}</a>
+            </td>
+            <td>{{ question.answer_set.count }} answers</td>
+            <td>
+                <a href="{% url 'question-remove' question.id %}" role="button" class="press">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'question-create' questionnaire.id %}" role="button" class="press">Add New Question</a>
+    <a href="{% url 'questionnaire-list' %}" role="button" class="press">Back to Questionnaire List</a>
+{% endblock content %}
+{% block footer %}
+{% endblock %}

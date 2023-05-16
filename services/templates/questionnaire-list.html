@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+Questionnaire Details
+{% endblock %}
+
+{% block content %}
+    <h1>Questionnaire List</h1>
+    <!-- create two buttons, one for modifiyng the title and the other to start a game with that questionnaire -->
+    <h3>
+        <a href="{% url 'questionnaire-create' %}" role="button" class="press">Add New Questionnaire</a>
+    </h3>
+    <!-- list all the questions and number of answers in a table, with a button to remove in each answer-->
+    <table class="tabla nav-links">
+        {% for questionnaire in questionnaire_list %}
+        <tr style="width: 100%;">
+            <td><a href="{% url 'questionnaire-detail' questionnaire.id %}" class="nav-links">{{ questionnaire.title }}</a></td>
+            <td>
+                <a href="{% url 'questionnaire-remove' questionnaire.id%}" role="button" class="press">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
+{% block footer %}
+{% endblock %}

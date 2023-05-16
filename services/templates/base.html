@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>
+      {% block title %} Kahoot {% endblock %}
+   </title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+   {% block header %}
+   <header>
+      <div class="logo">
+         <a href="{% url 'home' %}" style="position: relative;margin-left:5px"> Kahoot Clone</a>
+      </div>
+      <nav>
+         <ul class="nav-links">
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'login' %}" class="nav-links"> Log In</a></li>
+            <li><a href="{% url 'signup' %}" class="nav-links"> Sign-up</a></li>
+            {% else %}
+            <li><a href="{% url 'logout' %}" class="nav-links"> Log Out</a></li>
+            {% endif %}
+            <li><a href="#" class="nav-links"> About</a></li>
+         </ul>
+      </nav>
+   </header>
+   {% endblock %}
+
+   {% block menu %}
+   <hr>
+   {% endblock %}
+
+   {% block content %}
+   <!-- main block -->
+   <hr>
+   {% endblock %}
+
+   {% block footer %}
+   <hr>
+   <footer>
+      <div class="columna">
+         <h4>Contact</h4>
+         <p style="color:rgba(19, 18, 18, 0.473);">ph: (07) 3291 7444</p>
+         <p style="color:rgba(19, 18, 18, 0.473);">email: online@qbd.com.au</p>
+      </div>
+      <div class="columna">
+         <h4>Information</h4>
+         <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Affiliates</a></li>
+            <li><a href="#">Sitemap</a></li>
+         </ul>
+      </div>
+      <div class="columna">
+         <h4>Help</h4>
+         <ul>
+            <li><a href="#">Unsuscribe</a></li>
+            <li><a href="#">FAQ</a></li>
+         </ul>
+      </div>
+   </footer>
+   {% endblock %}
+</body>
+</html>

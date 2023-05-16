@@ -1,0 +1,131 @@
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: transparent;
+}
+
+header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+hr {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-right: 1%;
+    background-color: rgb(153, 57, 201);
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    color: rgb(153, 57, 201);
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-links li {
+    margin-right: 10px;
+    list-style-type: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgb(153, 57, 201);
+}
+
+.nav-links a:hover {
+    color: #666;
+}
+
+footer {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+}
+
+.columna {
+    flex: 1;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.columna h4 {
+    margin-bottom: 10px;
+}
+
+.columna ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.columna li {
+    margin-bottom: 5px;
+}
+
+.columna a {
+    color: rgba(19, 18, 18, 0.473);
+}
+
+.menu {
+    text-align: center;
+    margin-bottom: 5%;
+    position: relative;
+}
+
+/* .menu a  {
+    text-decoration: none;
+    color:rgb(153, 57, 201);
+    position: relative;
+    border-width: 3px;
+    border-radius: 10px;
+    padding: 5px;
+    background: #56f096;
+} */
+
+.press {
+    text-decoration: none;
+    color: rgb(153, 57, 201);
+    position: relative;
+    border-width: 3px;
+    border-radius: 10px;
+    padding: 5px;
+    background: #56f096;
+}
+
+.tabla {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-collapse: collapse;
+}
+
+.tabla td {
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}

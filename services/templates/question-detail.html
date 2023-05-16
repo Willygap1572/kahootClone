@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Questionnaire Details
+{% endblock %}
+
+{% block content %}
+    <h1>Question Details</h1>
+    <h2>{{ question.question }}:
+    <!-- create two buttons, one for modifiyng the title and the other to start a game with that questionnaire -->
+    <a href="{% url 'question-update' question.id%}" role="button" class="press">Edit Question</a>
+    </h2>
+    <!-- list all the questions and number of answers in a table, with a button to remove in each answer-->
+    <table class="tabla">
+        <tr>
+            <th>Answers</th>
+            <th>Correct</th>
+            <th></th>
+        </tr>
+        {% for answer in question.answer_set.all %}
+        <tr>
+            <td>
+                {{ answer.answer }}
+            </td>
+            <td>{{ answer.correct }}</td>
+            <td>
+                <a href="{% url 'answer-remove' answer.id %}" role="button" class="press">Remove</a>
+                <a href="{% url 'answer-update' answer.id %}" role="button" class="press">Edit</a>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'answer-create' question.id %}" role="button" class="press">Add New Answer</a>
+    <a href="{% url 'questionnaire-detail' question.questionnaire.id %}" role="button" class="press">Back to Questionnaire</a>
+{% endblock content %}
+{% block footer %}
+{% endblock %}
